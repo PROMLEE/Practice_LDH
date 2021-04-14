@@ -1,0 +1,10 @@
+Report #1
+제목 -- pgzero를 이용한 Card game
+마감일 -- 4월30일(금)
+
+1. card.py 수정
+   참조 (web-game/js/card.html)
+
+2. Python pgzero 를 이용한 프로그램으로 만들기
+3. eclass에 card.py 파일로 제출
+

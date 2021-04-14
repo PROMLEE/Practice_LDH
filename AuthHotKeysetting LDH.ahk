@@ -8,4 +8,5 @@ RShift::#^Right
 
 Pause::^!n
 ScrollLock::^s
+PrintScreen::#+s
 return

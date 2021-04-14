@@ -1,3 +1,2 @@
-n=-6
-if -n<=5:
-	print("yes")
+a = 'abcd'
+print(a.find('b'))
