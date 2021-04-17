@@ -1,26 +1,28 @@
-phone={
-    "홍길동":"010-4444-5555",
-    "김중앙":"010-9191-8181",
-    "심청":"010-3232-5454"
-}
+import time
+import random
+max_score = 0
 while True:
-    n = input("이름>> ")
-    if n == "exit":
-        print("전화번호부를 종료합니다.")
-        break
-
-    if n == "add":
-        a = input("이름은? ")
-        b = input("전화번호는? ")
-        phone[a]=b
-        print(a,"전화번호가 추가되었습니다.")
-    else:
-        name = list(phone.keys())
-        result = -1
-        for i in range(len(name)):
-            if n in name[i]:
-                result = i
-                number = phone[name[result]]
-                print(name[result],"\t",number)
-        if result == -1:
-            print("찾을 수 없습니다.")
+    score = 0
+    print("구구단을 외자. 문제 출력 후 3초 이내에 입력하세요.\n")
+    for i in range(10):
+        a = random.randint(1, 9)
+        b = random.randint(1, 9)
+        print("%d)"% (i+1), a, "*", b, "= ", end="")
+        before = time.time()
+        c = int(input())
+        after = time.time()
+        time_use = after - before
+        if time_use > 3:
+            result = "(제한시간이 지났습니다.)"
+        elif c == a * b:
+            result = "(맞았습니다.)"
+            score += 3000-int(time_use*1000)
+        else:
+            result = "(틀렸습니다.)"
+        print(result, "%.3f" % time_use, "초 소요 : Score =", "%d" % score)
+        print()
+    print("결과 점수 :",score)
+    if score > max_score:
+        max_score = score
+        print("최고 기록 갱신")
+    print()
