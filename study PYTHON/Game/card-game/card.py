@@ -51,11 +51,6 @@ for i in range(ROWMAX):
 cardStatus = cardNames[:]
 cardStatusOpen = [False]*COLMAX*ROWMAX
 
-# for i in range(ROWMAX):
-#   for j in range(COLMAX):
-#     print(cardStatus[i*COLMAX + j], end =" ")
-#   print ()
-
 def suffle(count):
   for _ in range(count):
     r1 = math.floor(random.random() * ROWMAX)
@@ -66,10 +61,52 @@ def suffle(count):
     cardStatus[r1*COLMAX + c1] = cardStatus[r2*COLMAX + c2]
     cardStatus[r2*COLMAX + c2] = card1
 
+turn = True
+white = (255,255,255)
+first_pick = (255,165,0)
+second_pick = (255,0,0)
+A_score = 0
+B_score = 0
+playerA = "Player A: "
+A_color = first_pick
+playerB = "Player B: "
+B_color = white
+
+# 두 플레이어의 차례를 정한다.
+def turn_change():
+  global turn
+  global A_color, B_color
+  global first_pick, second_pick, white
+  if turn:
+    if A_color == first_pick:
+      A_color = second_pick
+    elif A_color == second_pick:
+      A_color = white
+      B_color = first_pick
+      turn = not turn
+  else:
+    if B_color == first_pick:
+      B_color = second_pick
+    elif B_color == second_pick:
+      B_color = white
+      A_color = first_pick
+      turn = not turn
+
+# 두 플레이어의 점수를 업데이트한다.
+def score_update(a):
+  global A_score, B_score, turn
+  if cardStatus[a[0]][1] == cardStatus[a[1]][1]:
+    if turn == False:
+      A_score += 1
+    elif turn == True:
+      B_score += 1
+
+
 def draw():
   screen.fill(WHITE)
   screen.draw.filled_rect(Rect(TOP_LEFT,TOP_LEFT,TOP_LEFT+WIDTH,TOP_LEFT+HEIGHT),BACK_GROUND)
-  
+  screen.draw.text(playerA+str(A_score),(91,420),color = A_color)
+  screen.draw.text(playerB+str(B_score),(517,420), color = B_color)
   for loc, tile in enumerate(tile2d):
     card = cardStatus[loc]
     isopen = cardStatusOpen[loc]
@@ -78,6 +115,7 @@ def draw():
       sprite.pos = tile.x+CW2, tile.y+CH2
       sprite.draw()
 
+# 현재 뒤집혀 있는 카드의 인덱스를 리턴.
 def find_true():
   a = []
   for i in range(len(cardNames)):
@@ -85,14 +123,16 @@ def find_true():
       a.append(i)
   return a
 
+# 뒤집혀있는 두 카드가 같으면 없앤다.
 def update():
   a = find_true()
   if len(a) == 2:
-    clock.schedule(roll_back, 1.5)
+    clock.schedule(roll_back, 1)
     if cardStatus[a[0]][1] == cardStatus[a[1]][1]:
       tile2d[a[0]] = None
       tile2d[a[1]] = None
 
+# 뒤집혀있는 두 카드를 다시 뒤집는다.
 def roll_back():
   a = find_true()
   if len(a) == 2:
@@ -118,6 +158,10 @@ def on_mouse_down(pos):
       pass
     elif pos not in a:
       cardStatusOpen[pos] = not cardStatusOpen[pos]
+      turn_change()
+    a = find_true()
+    if len(a)==2:
+      score_update(a)
   return pos
 
 suffle(1000)
