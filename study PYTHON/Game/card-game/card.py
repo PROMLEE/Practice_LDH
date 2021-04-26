@@ -115,7 +115,7 @@ def draw():
       sprite.pos = tile.x+CW2, tile.y+CH2
       sprite.draw()
 
-# 현재 뒤집혀 있는 카드의 인덱스를 리턴.
+# 현재 뒤집혀 있는 카드의 위치를 리턴.
 def find_true():
   a = []
   for i in range(len(cardNames)):
