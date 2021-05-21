@@ -31,22 +31,40 @@ def draw(): # Pygame Zero draw function
     screen.fill((30, 10, 30))
     for b in myButtons: b.draw()
     if gameStarted:
-        screen.draw.text("Donghoon : " + str(score), (310, 540), owidth=0.5, ocolor=(255,255,255), color=(255,128,0) , fontsize=60)
+        screen.draw.text("Score : " + str(score), (310, 540), owidth=0.5, ocolor=(255,255,255), color=(255,128,0) , fontsize=60)
     else:
         playButton.draw()
         screen.draw.text("Play", (370, 525), owidth=0.5, ocolor=(255,255,255), color=(255,128,0) , fontsize=40)
         if score > 0:
-            screen.draw.text("Final Score : " + str(score), (250, 20), owidth=0.5, ocolor=(255,255,255), color=(255,128,0) , fontsize=60)
+            screen.draw.text("Donghoon : " + str(score), (250, 20), owidth=0.5, ocolor=(255,255,255), color=(255,128,0) , fontsize=60)
         else:
             screen.draw.text("Press Play to Start", (220, 20), owidth=0.5, ocolor=(255,255,255), color=(255,128,0) , fontsize=60)
     if playingAnimation or gameCountdown > 0:
         screen.draw.text("Watch", (330, 20), owidth=0.5, ocolor=(255,255,255), color=(255,128,0) , fontsize=60)
     if not playingAnimation and gameCountdown == 0:
         screen.draw.text("Now Donghoon", (310, 20), owidth=0.5, ocolor=(255,255,255), color=(255,128,0) , fontsize=60)
-    
+
+def click_sound():
+    global myButtons
+    if myButtons[0].state:
+        sounds.s60.play()
+    elif myButtons[1].state:
+        sounds.s62.play()
+    elif myButtons[2].state:
+        sounds.s64.play()
+    elif myButtons[3].state:
+        sounds.s65.play()
+
+def sound_stop():
+    sounds.s60.stop()
+    sounds.s62.stop()
+    sounds.s64.stop()
+    sounds.s65.stop()
+
 def update(): # Pygame Zero update function
     global myButtons, playingAnimation, playPosition, gameCountdown
     if playingAnimation:
+        click_sound()
         playPosition += 1
         listpos = math.floor(playPosition/LOOPDELAY)
         if listpos == len(buttonList):
@@ -57,19 +75,24 @@ def update(): # Pygame Zero update function
             if playPosition%LOOPDELAY > LOOPDELAY/2: litButton = -1
             bcount = 0
             for b in myButtons:
-                if litButton == bcount: b.state = True
+                if litButton == bcount:
+                    b.state = True
+                    sound_stop()
                 else: b.state = False
                 bcount += 1
     bcount = 0
     for b in myButtons:
-        if b.state == True: b.image = buttonsLit[bcount]
-        else: b.image = buttonsUnlit[bcount]
+        if b.state == True: 
+            b.image = buttonsLit[bcount]
+        else: 
+            b.image = buttonsUnlit[bcount]
         bcount += 1
     if gameCountdown > 0:
         gameCountdown -=1
         if gameCountdown == 0:
             addButton()
             playerInput.clear()
+
 
 def gameOver():
     global gameStarted, gameCountdown, playerInput, buttonList
@@ -87,6 +110,7 @@ def checkPlayerInput():
         ui += 1
     if ui == len(buttonList): signalScore = True
 
+
 def on_mouse_down(pos):
     global myButtons, playingAnimation, gameCountdown, playerInput
     if not playingAnimation and gameCountdown == 0:
@@ -96,6 +120,7 @@ def on_mouse_down(pos):
                 playerInput.append(bcount)
                 b.state = True
             bcount += 1
+        click_sound()
         checkPlayerInput()
 
 def on_mouse_up(pos):

@@ -1,2 +1,3 @@
 ﻿  c++.cpp
-  practice c++.vcxproj -> D:\LDH\visual studio LDH\study C++\practice c++\Debug\practice c++.exe
+D:\LDH\visual studio LDH\study C++\practice c++\c++.cpp(16,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+D:\LDH\visual studio LDH\study C++\practice c++\c++.cpp(21,4): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
