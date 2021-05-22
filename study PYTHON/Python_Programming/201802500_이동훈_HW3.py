@@ -89,7 +89,7 @@ def print_board():
         elif Player2.place == i: print('%6s' % '(2)', end='')
         else: print('%6s' % '', end='')
         print('%9s' % '', end='')
-    print('\n','='*75)
+    print('\n','='*75, sep ='')
 
 
 Player1 = Player('player 1')
@@ -107,7 +107,7 @@ Paris = City('Paris')
 board = [Start, Seoul, Tokyo, Sydney, La, Cairo, Phuke, New_delhi, Hanoi, Paris]
 turn = Player1
 for i in range(30):
-    print('★ turn', i+1)
+    print('★  turn', i+1)
     dice = randint(1, 6)
     print(turn.name, ':', dice)
     turn.move(dice)

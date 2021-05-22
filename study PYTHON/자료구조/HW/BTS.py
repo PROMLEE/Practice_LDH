@@ -93,6 +93,7 @@ class BST:
         return v
 
     def deleteByMerging(self, x):
+        if x == None: return
         a = x.left
         b = x.right
         pt = x.parent
@@ -123,6 +124,7 @@ class BST:
         self.size -= 1
 
     def deleteByCopying(self, x):
+        if x == None: return
         L = x.left
         R = x.right
         pt = x.parent
