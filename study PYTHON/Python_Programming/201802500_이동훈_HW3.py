@@ -6,7 +6,7 @@ class Player:
         self.name = v
         self.balance = 5000
         self.place = 0
-        self.Lose = False
+        self.lose = False
 
     def move(self, n):
         self.place += n
@@ -40,7 +40,7 @@ class City:
                 print(player.name, 'buys', self.name)
             else:
                 print('can\'t buy', self.name)
-        elif player != self.owner:
+        elif self.owner != player:
             print(self.name, '(%s)' % self.owner.name)
             if player.balance >= self.toll:
                 print('pay toll')
@@ -48,7 +48,7 @@ class City:
                 self.owner.get_balance(self.toll)
             else:
                 print('can\'t pay toll')
-                player.Lose = True
+                player.lose = True
         else:
             print(self.name, '(%s)' % self.owner.name)
             print('Nothing happens')
@@ -115,7 +115,7 @@ for i in range(30):
     board[turn.place].arrival(turn)
     print(Player1.name, '\'s balance is ', Player1.balance, sep='')
     print(Player2.name, '\'s balance is ', Player2.balance, sep='')
-    if turn.Lose:
+    if turn.lose:
         break
     if turn == Player1:
         turn = Player2

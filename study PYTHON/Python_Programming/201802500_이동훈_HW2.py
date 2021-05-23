@@ -1,9 +1,6 @@
 class Calc:
-    def __init__(self, v = 0):
+    def __init__(self, v=0):
         self.value = v
-
-    def print(self):
-        print(self.value)
 
     def setvalue(self, v):
         self.value = v
@@ -16,6 +13,9 @@ class Calc:
 
     def minus(self, n):
         self.value -= n
+
+    def print(self):
+        print(self.value)
 
 
 cal1 = Calc()

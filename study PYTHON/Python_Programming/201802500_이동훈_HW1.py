@@ -1,6 +1,6 @@
 while True:
     try:
-        file_name = input()
+        file_name = input('성적이 저장된 파일명을 입력해주세요.\n')
         f = open(file_name, 'r')
         break
     except FileNotFoundError:
@@ -30,26 +30,30 @@ while True:
         f.close()
         print(file_name2, '해당 파일을 덮어쓸까요? [y/n]')
         overwrite = input()
-        if overwrite == 'y':
-            break
+        if overwrite == 'y': break
         else:
-            file_name2 = input('파일 이름을 다시 입력해주세요.\n')
-    except FileNotFoundError:
-        break
+            while True:
+                file_name2 = input('파일 이름을 다시 입력해주세요.\n')
+                if file_name2[-4:] == '.txt': break
+                else:
+                    print('파일의 확장자를 .txt로 입력해주세요.')
+                    continue
+    except FileNotFoundError: break
 f = open(file_name2, 'w',encoding='utf-8')
-s = '%25s'%'성적표\n'
+s = '%33s'%'성적표\n'
 f.write(s)
-s = '%5s'%'학번' + '      국어  영어  수학  총점    평균    석차\n'
+s = '%7s'%'학번' + '      국어   영어  수학   총점     평균   석차\n'
 f.write(s)
 s='='*50 + '\n'
 f.write(s)
 for i in data:
-    s = i[0]
+    s = '  ' + i[0]
     for j in i[1:5]:
-        s += '%6s'%str(j)
-    s += str('%9.2f'%i[5])
+        s += '%7s'%str(j)
+    s += str('%10.2f'%i[5])
     rank = score.index(i[4]) + 1
     s += '%6s'%str(rank)
     s += '\n'
     f.write(s)
 f.close()
+print(file_name2, '파일을 저장 성공했습니다.')
