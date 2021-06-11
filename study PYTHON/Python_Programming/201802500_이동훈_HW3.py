@@ -1,130 +1,74 @@
-from random import randint
+import matplotlib.pyplot as plt
+import numpy as np
+f = open('Weather.csv','r')
+province = []
+date = []
+result = []
+head_line = True
+while True:
+    v = f.readline()
+    v = v[:-1]
+    if head_line:
+        head_line = False
+        continue
+    if v == '': break
+    s = v.split(',')
+    if s[1] not in province:
+        province.append(s[1])
+        date.append([])
+        result.append([])
+    x = province.index(s[1])
+    if s[2][:7] not in date[x]:
+        date[x].append(s[2][:7])
+        result[x].append([0,0,0])
+    y = date[x].index(s[2][:7])
+    result[x][y][0] += float(s[3])
+    result[x][y][1] += float(s[6])
+    result[x][y][2] += 1
+f.close()
 
+print('도시 목록입니다.')
+print('0 : ALL')
+for i in range(len(province)):
+    print('%-23s'%(str(i+1)+' : '+province[i]),end='')
+    if i %2 == 1:
+        print()
+    if i == (len(province)-1):
+        print()
+user = int(input('도시의 번호를 고르세요. '))
+user-=1
 
-class Player:
-    def __init__(self, v):
-        self.name = v
-        self.balance = 5000
-        self.place = 0
-        self.lose = False
-
-    def move(self, n):
-        self.place += n
-        if self.place > 9:
-            self.place -= 10
-
-    def pay_balance(self, n):
-        self.balance -= n
-
-    def get_balance(self, n):
-        self.balance += n
-
-
-class City:
-    def __init__(self, v):
-        self.name = v
-        self.owner = 'empty'
-        self.purchase = 300
-        self.toll = 600
-
-    def arrival(self, player):
-        if self.name == 'start':
-            print(self.name)
-            print('Nothing happens')
-            return
-        if self.owner == 'empty':
-            print(self.name, '(%s)' % self.owner)
-            if player.balance >= self.purchase:
-                player.pay_balance(self.purchase)
-                self.owner = player
-                print(player.name, 'buys', self.name)
-            else:
-                print('can\'t buy', self.name)
-        elif self.owner != player:
-            print(self.name, '(%s)' % self.owner.name)
-            if player.balance >= self.toll:
-                print('pay toll')
-                player.pay_balance(self.toll)
-                self.owner.get_balance(self.toll)
-            else:
-                print('can\'t pay toll')
-                player.lose = True
-        else:
-            print(self.name, '(%s)' % self.owner.name)
-            print('Nothing happens')
-
-
-def print_board():
-    print('='*75)
-    for i in range(5, 10):
-        t = board[i]
-        if t.owner != 'empty':
-            result = t.name + '(' + t.owner.name[-1] + ')'
-        else: result = t.name
-        if i != 9: result += ' →'
-        else: result += '  '
-        print('%15s' % result, end='')
-    print('\n%6s' % '', end='')
-    for i in range(5, 10):
-        if Player1.place == i and Player2.place == i:
-            print('%6s' % '(1)(2)', end='')
-        elif Player1.place == i: print('%6s' % '(1)', end='')
-        elif Player2.place == i: print('%6s' % '(2)', end='')
-        else: print('%6s' % '', end='')
-        print('%9s' % '', end='')
-    print('\n%12s' % '↑', '%57s' % '↓')
-    for i in range(4, -1, -1):
-        t = board[i]
-        if t.owner != 'empty':
-            result = t.name + '(' + t.owner.name[-1] + ')'
-        else: result = t.name
-        if i != 0: result += ' ←'
-        else: result += '  '
-        print('%15s' % result, end='')
-    print('\n%6s' % '', end='')
-    for i in range(4, -1, -1):
-        if Player1.place == i and Player2.place == i:
-            print('%6s' % '(1)(2)', end='')
-        elif Player1.place == i: print('%6s' % '(1)', end='')
-        elif Player2.place == i: print('%6s' % '(2)', end='')
-        else: print('%6s' % '', end='')
-        print('%9s' % '', end='')
-    print('\n','='*75, sep ='')
-
-
-Player1 = Player('player 1')
-Player2 = Player('player 2')
-Start = City('start')
-Seoul = City('Seoul')
-Tokyo = City('Tokyo')
-Sydney = City('Sydney')
-La = City('LA')
-Cairo = City('Cairo')
-Phuke = City('Phuke')
-New_delhi = City('New delhi')
-Hanoi = City('Hanoi')
-Paris = City('Paris')
-board = [Start, Seoul, Tokyo, Sydney, La, Cairo, Phuke, New_delhi, Hanoi, Paris]
-turn = Player1
-for i in range(30):
-    print('★  turn', i+1)
-    dice = randint(1, 6)
-    print(turn.name, ':', dice)
-    turn.move(dice)
-    print_board()
-    board[turn.place].arrival(turn)
-    print(Player1.name, '\'s balance is ', Player1.balance, sep='')
-    print(Player2.name, '\'s balance is ', Player2.balance, sep='')
-    if turn.lose:
-        break
-    if turn == Player1:
-        turn = Player2
-    else:
-        turn = Player1
-    print('◈'*75)
-if Player1.balance > Player2.balance:
-    print('Winner is player 1')
-elif Player1.balance < Player2.balance:
-    print('Winner is player 2')
+x = []
+y = []
+if user == -1:
+    title = 'ALL'
+    for i in range(len(date[0])):
+        ptemp = 0
+        count = 0
+        for j in range(len(date)):
+            ptemp += result[j][i][0]
+            count += result[j][i][2]
+        year = date[0][i][:4]
+        month = date[0][i][5:]
+        x.append(year+'-'+month)
+        y.append(float('%.1f'%(ptemp/count)))
 else:
-    print('Draw!')
+    title = province[user]
+    for i in range(len(date[user])):
+        year = date[user][i][:4]
+        month = date[user][i][5:]
+        p = result[user][i]
+        x.append(year+'-'+month)
+        y.append(float('%.1f'%(p[0]/p[2])))
+plt.figure(figsize=(14,9))
+markers, stemlines, baseline = plt.stem(x, y)
+markers.set_color('r')
+stemlines.set_color('b')
+stemlines.set_linewidth(0.8)
+plt.yticks(list(range(int(min(y))-3,int(max(y))+3,1)))
+plt.grid(True)
+plt.title(title +' Monthly temperature',fontsize = 25, color = 'g')
+plt.xlabel('Date')
+plt.ylabel('Temperature')
+plt.xticks(rotation=90)
+plt.show()

@@ -1,27 +1,36 @@
 #include <iostream>
-#include <string.h>
 using namespace std;
-//strncmp, strcpy, strncat
-int main() {
-	char str[80] = { 0, }; //기존 문자열
-	char find[10] = { 0, }; //찾을 문자열
-	char change[10] = { 0, }; //바꿀 문자열
-	char* first;
-	char* last;
-	char temp[80] = { 0, };
-	cin.getline(str, 80); //getline은 띄어쓰기까지 배열에 포함하여 받아오기
-	cin.getline(find, 10);
-	cin.getline(change, 10);
 
-	for (int i = 0; i < strlen(str); i++) { //str배열 전체 훑어보기
-		first = &str[i];
-		if(strncmp(first, find, sizeof(find))==0){
-			//바꾸는 코드
-			last = &str[i];
-			strcpy(last, change);
-			memset(temp, NULL, sizeof(temp)); //임시 배열 초기화
-		}
+class Power {
+	int kick;
+	int punch;
+public:
+	Power(int kick = 0, int punch = 0) {
+		this->kick = kick;
+		this->punch = punch;
 	}
-	cout << str << endl;
-	return 0;
+	void show();
+	friend Power operator+(Power op1, Power op2); // 프렌드 선언
+};
+
+void Power::show() {
+	cout << "kick = " << kick << ", " << "punch = " << punch << endl;
+}
+Power operator+(Power op1, Power op2) {
+	Power tmp;
+	tmp.kick = op1.kick + op2.kick;
+	tmp.punch = op1.punch + op2.punch;
+	return tmp;
+}
+
+
+
+int main() {
+	int i, j, p, q;
+	cin >> i >> j >> p >> q;
+	Power a(i, j), b(p, q), c;
+	c = a + b; // 파워 객체 + 연산
+	a.show();
+	b.show();
+	c.show();
 }
