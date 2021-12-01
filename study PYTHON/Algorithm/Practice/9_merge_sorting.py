@@ -63,11 +63,13 @@ def m_sort(A, first, last):
         A[l] = B[l-first]
     return A
 
+
 def check(A):
     for i in range(1, len(A)):
         if A[i-1] > A[i]:
             return False
     return A[0]+A[(len(A)//2)]+A[-1]
+
 
 A = [int(x) for x in input().split()]
 m_sort(A, 0, len(A)-1)
