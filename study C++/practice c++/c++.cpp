@@ -1,66 +1,43 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
-#include <fstream>
-#include <cstring>
 using namespace std;
 
-int len(char* n);
-int findword(char* n);
+struct Player {
+	char name[20];
+	int intial_soldiers;
+};
 int main() {
-	int alphabet[26] = { 0, };
-	ifstream myfile;
-	myfile.open("data/example.txt");
-	char arr[10][500];
-	int i = -1;
-	while (myfile) {
-		i++;
-		myfile.getline(arr[i], 500);
-	}
-	myfile.close();
-	for (int j = 0; j < i; j++) {
-		for (int k = 0; k < len(arr[j]); k++) {
-			if ((arr[j][k] >= 65) & (arr[j][k] <= 90))
-				alphabet[arr[j][k] - 65] += 1;
-			else if ((arr[j][k] >= 97) & (arr[j][k] <= 121))
-				alphabet[arr[j][k] - 97] += 1;
+	int n, s1, s2, f1, f2;
+	cin >> n;
+	Player P1, P2;
+	cin >> P1.name >> f1;
+	cin >> P2.name >> f2;
+	P1.intial_soldiers = f1;
+	P2.intial_soldiers = f2;
+	for (int i = 0; i < n; i++) {
+		cin >> s1 >> s2;
+		if (s1 > s2)
+			s1 /= 2;
+		else if (s1 == s2) {
+			s1 /= 2;
+			s2 /= 2;
 		}
+		else
+			s2 /= 2;
+		P1.intial_soldiers -= s1;
+		P2.intial_soldiers -= s2;
+		if (P1.intial_soldiers <= 0 || P2.intial_soldiers <= 0)
+			break;
 	}
-	int count = 0, x;
-	for (int i = 0; i < 26; i++) {
-		if (alphabet[i] > count) {
-			x = i;
-			count = alphabet[i];
-		}
+	if (P1.intial_soldiers < P2.intial_soldiers)
+		cout << P2.name;
+	else if (P1.intial_soldiers > P2.intial_soldiers)
+		cout << P1.name;
+	else {
+		if (f1 < f2)
+			cout << P2.name;
+		else
+			cout << P1.name;
 	}
-	char* temp;
-	char X;
-	int a;
-	for (int j = 0; j < i; j++) {
-		a = findword(arr[j]);
-		temp = strtok(arr[j], " ");
-		for (int k = 1; k <=a; k++) {
-			for (int l = 0; l < len(temp); l++) {
-				if ((temp[l] - 65 == x) || (temp[l] - 97 == x)) {
-					cout << temp << endl;
-					break;
-				}
-			}
-			temp = strtok(NULL, " ");
-		}
-	}
+	cout << P1.intial_soldiers << " " << P2.intial_soldiers;
 	return 0;
-}
-int len(char* n) {
-	int x;
-	for (x = 0; n[x]; x++);
-	return x;
-}
-int findword(char* n) {
-	int a = 0, x = len(n);
-	for (int i = 0; i < x; i++) {
-		if (n[i] == ' ')
-			a++;
-	}
-	a++;
-	return a;
 }

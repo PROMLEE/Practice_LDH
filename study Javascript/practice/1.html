@@ -1,66 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>web1 - html</title>
-    <meta charset="UTF-8" />
-    <style>
-      a {
-        color: black;
-        text-decoration: none;
-      }
-      #active {
-        color: rgba(7, 128, 53, 0.733);
-      }
-      h1 {
-        font-size: 45px;
-        text-align: center;
-        border-bottom: 1px solid grey;
-        margin: 0;
-        padding: 20px;
-      }
-      #grid ol {
-        border-right: 1px solid grey;
-        width: 100px;
-        margin: 0;
-        padding: 20px;
-        padding-left: 27px;
-      }
-      body {
-        margin: 0;
-      }
-      #grid {
-        display: grid;
-        grid-template-columns: 150px 1fr;
-      }
-      @media (max-width: 800px) {
-        #grid {
-          display: block;
-        }
-        #grid ol {
-          border-right: none;
-        }
-        h1 {
-          border-bottom: none;
-        }
-      }
-    </style>
+    <link href="menu.css" type="text/css" rel="stylesheet" />
   </head>
   <body>
-    <h1><a href="index.html">WEB</a></h1>
-    <div id="grid">
-      <ol>
-        <li><a href="1.html">html</a></li>
-        <li><a href="2.html">css</a></li>
-        <li><a href="3.html">Javascript</a></li>
-      </ol>
-      <div id="article">
-        <h2>HTML</h2>
-        <p>
-          The HyperText Markup Language, or HTML is the standard markup language
-          for documents designed to be displayed in a web browser. It can be
-          assisted by technologies such as Cascading Style Sheets (CSS) and
-          scripting languages such as JavaScript.
-        </p>
+    <div class="dropdown">
+      <button class="dropbtn">드롭다운 메뉴</button>
+      <div class="dropdown-content">
+        <a href="#">홈</a>
+        <a href="#">회사소개</a>
+        <a href="#">제품소개</a>
+        <a href="#">오시는길</a>
       </div>
     </div>
   </body>

@@ -1,0 +1,74 @@
+#title {
+  display: inline-block;
+  width: 76%;
+  font: bold 70px arial;
+  margin-left: 50px;
+  color: rgb(33, 33, 255);
+}
+#maintitle {
+  color: rgb(134, 134, 255);
+  font-size: 40px;
+}
+#adjust {
+  display: inline-block;
+  width: 20%;
+}
+#field {
+  border: 2px solid blue;
+  border-radius: 30px;
+}
+
+#text {
+  font-size: 30px;
+  margin-right: 50px;
+  margin-left: 50px;
+  font-family: Gothic, Arial, Helvetica, sans-serif;
+}
+#font {
+  font-size: 25px;
+  font: bold;
+}
+#input {
+  width: 100%;
+}
+#submit {
+  background-color: rgb(158, 237, 255);
+  width: 100%;
+}
+#output {
+  float: right;
+}
+header {
+  margin-bottom: 30px;
+}
+p {
+  text-indent: 20px;
+}
+h2 {
+  margin-top: 0;
+  margin-left: 30px;
+}
+article {
+  height: 200px;
+  border: 1px solid rgb(47, 0, 255);
+  border-radius: 20px;
+}
+footer {
+  height: 300px;
+  border: 1px solid rgb(47, 0, 255);
+  border-top: 0;
+  border-radius: 20px;
+}
+a {
+  margin-left: 30px;
+  font-size: 30px;
+}
+ul {
+  margin-left: 30px;
+}
+figure {
+  text-align: center;
+}
+figcaption {
+  font-size: 20px;
+}

@@ -1,0 +1,200 @@
+html {
+  background-color: rgb(226, 224, 250);
+}
+header {
+  background-image: url("header.png");
+  background-size: 100% 100%;
+}
+body {
+  margin: 0;
+}
+h4 {
+  text-align: right;
+  vertical-align: top;
+  display: inline-block;
+  height: 100%;
+  width: 89.5%;
+  margin: 0;
+  color: white;
+}
+
+#hufs {
+  width: 10%;
+  display: inline-block;
+}
+#listbar {
+  border-top: 1px rgb(94, 94, 189) solid;
+  background: linear-gradient(rgb(137, 133, 242), rgba(60, 53, 242));
+  display: block;
+  width: 100%;
+  height: 90px;
+  overflow: hidden;
+}
+/* #listbar ol {
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
+#listbar ol li {
+  display: inline-block;
+  list-style-type: none;
+  padding: 0px;
+  margin-left: 0.5%;
+  font-size: 40px;
+  color: white;
+  text-align: center;
+  line-height: 90px;
+  width: 24%;
+  height: 100%;
+}
+a {
+  text-decoration: none;
+  font-family: Malgun Gothic, Dotum, sans-serif;
+}
+a li:hover {
+  background: linear-gradient(rgb(242, 242, 242), rgba(97, 92, 242));
+} */
+#title {
+  width: 50%;
+  height: auto;
+  bottom: 0;
+}
+#frame {
+  display: inline-block;
+  width: 19.6%;
+  height: 3000px;
+  margin: 0;
+  border: 0;
+  position: absolute;
+}
+section {
+  display: inline-block;
+  width: 80%;
+  height: 3000px;
+  margin: 0;
+  border: 0;
+}
+#section {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  margin: 0;
+}
+#article {
+  height: 1350px;
+}
+#aside {
+  height: 1500px;
+  background: linear-gradient(rgb(193, 176, 255), rgba(255, 255, 255));
+}
+#article,
+#aside {
+  display: inline-block;
+  width: 100%;
+  border: 3px dotted rgb(109, 140, 242);
+  border-radius: 20px;
+  margin: 0;
+}
+footer {
+  width: 100%;
+  text-align: center;
+  color: white;
+  background: rgb(46, 46, 109);
+  height: 200px;
+}
+@media (max-width: 1300px) {
+  #listbar {
+    height: 200%;
+  }
+  #frame {
+    display: none;
+  }
+  section {
+    width: 100%;
+  }
+}
+#clock {
+  color: rgb(0, 6, 89);
+  text-align: right;
+}
+#field {
+  border: 3px solid blue;
+}
+#font {
+  color: rgb(0, 136, 255);
+}
+#news {
+  width: 98%;
+  height: 1080px;
+}
+#covid {
+  font-size: 40px;
+  text-align: center;
+  font-style: bold;
+  margin-bottom: 0;
+}
+
+#aside ul {
+  margin-top: 40px;
+  color: rgb(0, 8, 255);
+}
+#aside ul li {
+  font-size: 35px;
+}
+#aside ul ol li {
+  margin-top: 20px;
+
+  font-size: 25px;
+  color: rgb(0, 136, 255);
+}
+#aside ol {
+  margin-bottom: 50px;
+}
+#aside a li:hover {
+  background: linear-gradient(rgb(178, 255, 191), rgb(172, 169, 255));
+  cursor: pointer;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul.myMenu > li {
+  display: inline-block;
+  width: 80px;
+  padding: 0;
+  margin-left: 0.5%;
+  text-align: center;
+  position: relative;
+  font-size: 40px;
+  color: white;
+  line-height: 90px;
+  width: 24%;
+  height: 100%;
+}
+ul.myMenu > li:hover {
+  background: linear-gradient(rgb(242, 242, 242), rgba(97, 92, 242));
+}
+ul.myMenu > li ul.submenu {
+  display: none;
+  position: fixed;
+  top: 27%;
+}
+ul.myMenu > li:hover ul.submenu {
+  display: inline-block;
+}
+ul.myMenu > li ul.submenu > li {
+  display: inline-block;
+  width: 200%;
+  /* padding: 5px 10px; */
+  background: linear-gradient(rgb(137, 133, 242), rgba(60, 53, 242));
+  border: 1px solid #eee;
+  text-align: center;
+}
+ul.myMenu > li ul.submenu > li:hover {
+  background: linear-gradient(rgb(242, 242, 242), rgba(97, 92, 242));
+}
