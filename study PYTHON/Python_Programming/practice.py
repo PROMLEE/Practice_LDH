@@ -1,3 +1,1 @@
-import fibo
-
-fibo.fib(5)
+print(2 ** 31)
