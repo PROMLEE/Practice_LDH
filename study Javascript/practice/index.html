@@ -1,30 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>web1 - html</title>
-    <meta charset="UTF-8" />
-    <style>
-      a {
-        text-decoration: none;
-      }
-      h1 {
-        font-size: 45px;
-        text-align: center;
-      }
-    </style>
+    <title>Document</title>
+    <!-- 리액트 사용 준비 -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
   </head>
   <body>
-    <h1><a href="index.html">web</a></h1>
-    <ol>
-      <li><a href="1.html">html</a></li>
-      <li><a href="2.html">css</a></li>
-      <li><a href="3.html">Javascript</a></li>
-    </ol>
-    <h2>HTML</h2>
-    <ul>
-      <li>htmlel</li>
-    </ul>
-    <p><a href="http://www.kimyoung.co.kr/mypage/Room/Lec_Movie_Dtl.asp?app_seq=3315358" target="_blank" title="ddjkkd">hello hellohello hello hellohello</a> hello hellohello hello hello</p>
-    <p>hello hello hellohello hello hellohello hello hellohello hello</p>
+    <div id="root"></div>
+    <!-- 리액트를 사용하는 코드 입력 -->
+    <script type="text/babel">
+      // 애플리케이션 클래스 생성하기
+      class App extends React.Component {
+        render() {
+          return (
+            <ul>
+              <Item />
+              <Item />
+              <Item />
+            </ul>
+          );
+        }
+      }
+
+      class Item extends React.Component {
+        render() {
+          return <li>Item 컴포넌트</li>;
+        }
+      }
+
+      // 출력하기
+      const container = document.getElementById("root");
+      ReactDOM.render(<App />, container);
+    </script>
   </body>
 </html>

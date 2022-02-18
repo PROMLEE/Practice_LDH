@@ -1,11 +1,15 @@
-def B(k, col):
-    pass
+def B(k, col):  # check if the k-th queen can be placed at (k, col)
+    # 코드 작성
+    for i in range(1, k):
+        if x[i] == col or x[i] + (k - i) == col or x[i] - (k - i) == col:
+            return False
+    return True
 
 
-def nQueens(k):
-    global solve
+def nQueens(k):  # decide a valid x[k]
+    global sol  # sol: 전역 변수로 사용한다는 의미
     if k > n:
-        sol += 1
+        sol += 1  # 해가 하나 발견되어 갯수 증가
         return
     for col in range(1, n + 1):
         if B(k, col):
@@ -14,7 +18,7 @@ def nQueens(k):
 
 
 n = int(input())
-x = [0] * (n + 1)
-sol = 0
+x = [0] * (n + 1)  # 해를 기록
+sol = 0  # 해의 개수를 기록
 nQueens(1)
-print()
+print(sol)
