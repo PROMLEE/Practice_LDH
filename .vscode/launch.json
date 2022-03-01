@@ -4,13 +4,46 @@
 	// 자세한 내용을 보려면 https://go.microsoft.com/fwlink/?linkid=830387을(를) 방문하세요.
 	"version": "0.2.0",
 	"configurations": [
-	{"name":"Python: Current File","type":"python","request":"launch","program":"${file}","console":"integratedTerminal"},
-		{
-			"name": "Python: Current File",
-			"type": "python",
-			"request": "launch",
-			"program": "${file}",
-			"console": "integratedTerminal"
-		}
-	]
+    {
+      "type": "java",
+      "name": "Launch Main",
+      "request": "launch",
+      "mainClass": "Main",
+      "projectName": "Helloworld"
+    },
+    {
+      "type": "java",
+      "name": "Launch Main1",
+      "request": "launch",
+      "mainClass": "Main1",
+      "projectName": "Helloworld"
+    },
+    {
+      "type": "java",
+      "name": "Launch HelloWorldApp",
+      "request": "launch",
+      "mainClass": "HelloWorldApp"
+    },
+    {
+      "type": "java",
+      "name": "Launch HelloWorldApp",
+      "request": "launch",
+      "mainClass": "HelloWorldApp",
+      "projectName": "Helloworld"
+    },
+    {
+      "name": "Python: Current File",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Python: Current File",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
+    }
+  ]
 }
